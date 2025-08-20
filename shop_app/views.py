@@ -6,6 +6,8 @@ from rest_framework import viewsets
 import json
 
 # Create your views here.
+
+
 class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = productSerializer
 
@@ -13,7 +15,8 @@ class ProductViewSet(viewsets.ModelViewSet):
         qry_set = Product.objects.all()
         if self.action in ('list', 'retrieve'):
             qry_set = (qry_set.only('pk', 'name').prefetch_related(
-                Prefetch('option_set', queryset=ProductOption.objects.only("pk", "product_id", "name", "price")), 
+                Prefetch('option_set', queryset=ProductOption.objects.only(
+                    "pk", "product_id", "name", "price")),
                 Prefetch('tag_set', queryset=Tag.objects.only("pk", "name"))
-                ))
+            ))
         return qry_set
