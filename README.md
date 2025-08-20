@@ -38,7 +38,7 @@ pip install -r requirements.txt
    
 2. docker 컨테이너 생성 및 실행
    ```
-    docker compsoe up -d
+    docker compose up -d (백그라운드에서 실행)
    ```
    - 기타 명령어
 
